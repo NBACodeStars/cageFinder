@@ -12,7 +12,7 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 
 .cagesBody {
     background-color: #5c3c92;
-    padding-top: 290px;
+    padding-top: 40px;
 }
 
 .mainFlex {
@@ -118,4 +118,19 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
     to {
       transform: rotate(360deg);
     }
+    }
+
+    footer {
+        background-color: black;
+        text-align: center;
+        margin: 0px;
+        margin-top: 50px;
+
+    }
+
+    footer p {
+        color: white;
+        padding: 20px;
+        font-size: 20px;
+        margin: 0px;
     }
