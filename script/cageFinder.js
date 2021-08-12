@@ -1,5 +1,5 @@
 
-console.log('test')
+
 
 const cageFinder = {}
 
@@ -28,61 +28,93 @@ cageFinder.findCage = () => {
     // /person/{person_id}/movie_credits
     fetch('https://api.themoviedb.org/3/person/2963/movie_credits?api_key=bc9b7d4e7d76676601ab9360b373eedc')
         .then((res) => {
-            console.log(res.cast)
+            
             return res.json()
         })
         .then((data) => {
-            console.log(data)
+            // console.log(data)
            
             // cageFinder.movies = data.genres ???
             // cageFinder.displayCage(data.cast)
             cageFinder.movies = data.cast;
+            
+           
+          
+            cageFinder.displayCage()
         })
+
+       
 }
 
 // ***************************************************
 // PUT CAGE ON THE PAGE!!
 // ***************************************************
 
-let index = 0;
+const cageList = document.getElementsByClassName("cageList")[0]; 
 
 cageFinder.displayCage = () => {
 
-    alert(`getting movie number ${index}`);
+    console.log('buttn press')
+    
+    cageList.innerHTML = "";
+    
 
-    const movie = cageFinder.movies[0];
-    index++;
-    
-    const cageList = document.getElementsByClassName("cageList") 
-    cageList.innerHTML = ""
-    
-    const newListItem= document.createElement("li")
-       
-    const newCagePhoto = document.createElement("img")
-    
-    const movieImage = `https://image.tmdb.org/t/p/original/${movie.poster_path}`
-    newCagePhoto.setAttribute("src", movieImage)
-    newCagePhoto.setAttribute("alt", `This is a poster for the movie: ${movie.title}`)
+    for (let i = 0; i < 6; i++ ) {
 
-    const newListTitle = document.createElement("p")
-    newListTitle.textContent = movie.title
-    const newListOverview = document.createElement("p")
-    newListOverview.textContent = movie.overview
-    const newListMetric = document.createElement("p")
-    newListMetric.textContent = `Average rating of: ${movie.vote_average}; from ${movie.vote_count} users`
+        let movie = cageFinder.movies[Math.floor(Math.random() * cageFinder.movies.length)];
+        console.log(movie)
+
+
+        // let movie = cageFinder.movies[i];
+        // console.log(movie);
+
+
+        
+        
+        
+
+        const newListItem= document.createElement("li")
+        newListItem.className = 'cageItem'
+
+        
+        
+        
+
+        const newListTitle = document.createElement("p")
+        newListTitle.className = 'cageTitle';
+        newListTitle.textContent = movie.title
+
+        const newListOverview = document.createElement("p")
+        newListOverview.className = 'cageOverview'
+        newListOverview.textContent = movie.overview
+
+        const newListMetric = document.createElement("p")
+        newListMetric.className = 'cageMetric'
+        newListMetric.textContent = `Average rating of: ${movie.vote_average}; from ${movie.vote_count} users`
+        
+        if (movie.poster_path) {
+            const newCagePhoto = document.createElement("img")
+            const movieImage = `https://image.tmdb.org/t/p/original/${movie.poster_path}`
+            newCagePhoto.setAttribute("src", movieImage)
+            newCagePhoto.setAttribute("alt", `This is a poster for the movie: ${movie.title}`)
+            newListItem.appendChild(newCagePhoto)
+        } 
+        newListItem.appendChild(newListTitle)
+        newListItem.appendChild(newListOverview)
+        newListItem.appendChild(newListMetric)
+        
+        cageList.appendChild(newListItem)
+    }
     
-    newListItem.appendChild(newCagePhoto)
-    newListItem.appendChild(newListTitle)
-    newListItem.appendChild(newListOverview)
-    newListItem.appendChild(newListMetric)
-    
-    cageList.append(newListItem)
 }
 
-document.getElementById('loadAMovie').addEventListener('click', cageFinder.displayCage);
+
+
+document.getElementById('loadAMovie').addEventListener('click', cageFinder.displayCage, );
 
 cageFinder.getCageOnThePage = () => {
     cageFinder.findCage()
+    
 }
 
 cageFinder.getCageOnThePage()

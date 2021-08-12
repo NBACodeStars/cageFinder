@@ -86,16 +86,72 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
     flex-direction: column;
 }
 
+.cageList {
+    flex-wrap: wrap;
+    display: flex;
+}
+
+/* .theFinalCage {
+
+}
+
+.cageHeading {
+
+} */
+
+
+
 .theFinalCage {
     width: 40%;
     
 }
 
-.nbaLetters {
+/* .nbaLetters {
     margin: 40px;
     width: 100px;
     height: 100px;
-}
+} */
+
+/* 
+CAGE Li
+*********************** */
+
+    .cageItem {
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+    }
+
+    .cageItem p, img {
+        color: white;
+        width: 100%;
+        margin: 0;
+        font-family: 'Anonymous Pro', monospace;
+    }
+
+    .cageItem .cageTitle {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .cageOverview {
+        
+    }
+
+    .cageMetric {
+
+    }
+
+    .cageContainer p {
+        color: White;
+        font-family: 'Anonymous Pro', monospace;
+    }
+
+
 
 
 .cageLoaderImage {
